@@ -30,7 +30,7 @@ class CategoryListFragment : Fragment() {
         binding.viewModel = viewModel
 
         categoryAdapter = CategoryAdapter()
-        binding.rvBeers.adapter = categoryAdapter
+        binding.rvCategories.adapter = categoryAdapter
 
         return binding.root
     }

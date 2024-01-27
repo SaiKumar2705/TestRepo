@@ -21,23 +21,23 @@ import org.mockito.kotlin.whenever
 @RunWith(MockitoJUnitRunner::class)
 class CategoryListViewModelTest : BaseViewModelTest() {
 
-    private lateinit var beerListViewModel: CategoryListViewModel
+    private lateinit var categoryListViewModel: CategoryListViewModel
 
     @Mock
-    lateinit var getBeersUseCase: GetCategoriesUseCase
+    lateinit var getCategoriesUseCase: GetCategoriesUseCase
 
     @Before
     fun setUp() {
-        beerListViewModel =  CategoryListViewModel(getBeersUseCase)
+        categoryListViewModel =  CategoryListViewModel(getCategoriesUseCase)
     }
 
     @Test
     fun `Successful Result with List of Categories`() = runBlockingMainTest {
         val inputFlow: Flow<Resource<List<Category>>> =
             flowOf(Resource.Success(listOf(getDummyCategory())))
-        whenever(getBeersUseCase.invoke()).thenReturn(inputFlow)
-        beerListViewModel.getCategories()
-        assertEquals(getDummyCategory(), beerListViewModel.state.value.categories.first())
+        whenever(getCategoriesUseCase.invoke()).thenReturn(inputFlow)
+        categoryListViewModel.getCategories()
+        assertEquals(getDummyCategory(), categoryListViewModel.state.value.categories.first())
     }
 
 }

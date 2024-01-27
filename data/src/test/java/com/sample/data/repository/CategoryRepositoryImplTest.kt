@@ -1,5 +1,7 @@
 package com.sample.data.repository
 
+import com.sample.data.getDummyCategory
+import com.sample.data.getDummyCategoryDto
 import com.sample.data.remote.categoryApi
 import kotlinx.coroutines.*
 import kotlinx.coroutines.test.resetMain
@@ -17,9 +19,9 @@ import org.mockito.kotlin.whenever
 @DelicateCoroutinesApi
 @ExperimentalCoroutinesApi
 @RunWith(MockitoJUnitRunner::class)
-class BeerRepositoryImplTest {
+class CategoryRepositoryImplTest {
 
-    private lateinit var beerRepositoryImpl: CategoryRepositoryImpl
+    private lateinit var categoryRepositoryImpl: CategoryRepositoryImpl
     private val mainThreadSurrogate = newSingleThreadContext("UI thread")
 
     @Mock
@@ -29,7 +31,7 @@ class BeerRepositoryImplTest {
     fun setUp() {
         Dispatchers.
         setMain(mainThreadSurrogate)
-        beerRepositoryImpl = CategoryRepositoryImpl(categoryApi)
+        categoryRepositoryImpl = CategoryRepositoryImpl(categoryApi)
     }
 
     @After
@@ -38,11 +40,11 @@ class BeerRepositoryImplTest {
         mainThreadSurrogate.close()
     }
 
-//    @Test
-//    fun `Get list of beers`() = runBlocking {
-//        whenever(categoryApi.getCategories()).thenReturn(listOf(getDummyBeerDto()))
-//        val beerList = beerRepositoryImpl.getCategories()
-//        assertEquals(listOf(getDummyBeer()), beerList)
-//    }
+    @Test
+    fun `Get list of categories`() = runBlocking {
+        whenever(categoryApi.getCategories()).thenReturn(getDummyCategoryDto())
+        val categoryList = categoryRepositoryImpl.getCategories()
+        assertEquals(listOf(getDummyCategory()), categoryList)
+    }
 
 }

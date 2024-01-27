@@ -4,7 +4,7 @@ import com.sample.common.Resource
 import com.sample.domain.model.Category
 import com.sample.domain.use_case.GetCategoriesUseCase
 import com.sample.mycategory.BaseViewModelTest
-import com.sample.mycategory.getDummyBeer
+import com.sample.mycategory.getDummyCategory
 import com.sample.mycategory.runBlockingMainTest
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
@@ -19,7 +19,7 @@ import org.mockito.kotlin.whenever
 
 @ExperimentalCoroutinesApi
 @RunWith(MockitoJUnitRunner::class)
-class BeerListViewModelTest : BaseViewModelTest() {
+class CategoryListViewModelTest : BaseViewModelTest() {
 
     private lateinit var beerListViewModel: CategoryListViewModel
 
@@ -32,12 +32,12 @@ class BeerListViewModelTest : BaseViewModelTest() {
     }
 
     @Test
-    fun `Successful Result with List of Beers`() = runBlockingMainTest {
+    fun `Successful Result with List of Categories`() = runBlockingMainTest {
         val inputFlow: Flow<Resource<List<Category>>> =
-            flowOf(Resource.Success(listOf(getDummyBeer())))
+            flowOf(Resource.Success(listOf(getDummyCategory())))
         whenever(getBeersUseCase.invoke()).thenReturn(inputFlow)
         beerListViewModel.getCategories()
-        assertEquals(getDummyBeer(), beerListViewModel.state.value.categories.first())
+        assertEquals(getDummyCategory(), beerListViewModel.state.value.categories.first())
     }
 
 }

@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">MyCategory</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="beer_list_fragment_label">Categories</string>
+</resources>

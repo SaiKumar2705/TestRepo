@@ -18,7 +18,7 @@ fun CategoryItem(category: Category) {
         modifier = Modifier.padding(8.dp),
         style = TextStyle(
             fontWeight = FontWeight.Bold,
-            fontSize = 16.sp
+            fontSize = 20.sp
         )
     )
 }

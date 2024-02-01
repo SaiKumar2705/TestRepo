@@ -52,7 +52,6 @@ class MainActivity : ComponentActivity() {
                 },
                 backgroundColor = MaterialTheme.colors.primarySurface
             )
-            Spacer(modifier = Modifier.height(16.dp))
             CategoryListScreen(viewModel)
         }
     }

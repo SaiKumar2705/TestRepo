@@ -15,8 +15,8 @@ internal class GetCategoriesUseCaseImpl @Inject constructor(private val reposito
     override operator fun invoke(): Flow<Resource<List<Category>>> = flow {
         try {
             emit(Resource.Loading())
-            val beers = repository.getCategories()
-            emit(Resource.Success(beers))
+            val categories = repository.getCategories()
+            emit(Resource.Success(categories))
         } catch (e: HttpException) {
             emit(Resource.Error(e.localizedMessage ?: "An unexpected error occured"))
         } catch (e: IOException) {

@@ -59,12 +59,11 @@ dependencies {
     implementation AndroidX.lifecycleRuntime
 
     testImplementation Testing.junit
-    testImplementation Testing.mockitokotlin
-    testImplementation Testing.mockitoCore
     testImplementation Testing.coroutinesTest
+    testImplementation Testing.mockk
 
     androidTestImplementation Testing.junitExt
     androidTestImplementation Testing.espresso
-    androidTestImplementation Testing.mockitoCore
+
 
 }

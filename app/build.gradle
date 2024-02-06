@@ -56,11 +56,9 @@ dependencies {
 
     testImplementation Testing.junit
     testImplementation Testing.coreTesting
-    testImplementation Testing.mockitokotlin
-    testImplementation Testing.mockitoCore
     testImplementation Testing.coroutinesTest
+    testImplementation Testing.mockk
 
-    androidTestImplementation Testing.mockitoCore
     androidTestImplementation Testing.junitExt
     androidTestImplementation Testing.espresso
 

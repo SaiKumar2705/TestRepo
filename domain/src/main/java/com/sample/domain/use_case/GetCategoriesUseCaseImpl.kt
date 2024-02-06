@@ -1,5 +1,6 @@
 package com.sample.domain.use_case
 
+import com.sample.common.CategoriesError
 import com.sample.common.Resource
 import com.sample.domain.model.Category
 import com.sample.domain.repository.CategoryRepository
@@ -18,9 +19,18 @@ internal class GetCategoriesUseCaseImpl @Inject constructor(private val reposito
             val categories = repository.getCategories()
             emit(Resource.Success(categories))
         } catch (e: HttpException) {
-            emit(Resource.Error(e.localizedMessage ?: "An unexpected error occured"))
-        } catch (e: IOException) {
-            emit(Resource.Error("Couldn't reach server. Check your internet connection."))
+            handleException(e)
+        }
+    }
+
+
+    private fun handleException(exception: Exception): CategoriesError {
+        return when (exception) {
+            is HttpException -> CategoriesError.Http(
+                exception.localizedMessage ?: "An unexpected error occurred"
+            )
+            is IOException -> CategoriesError.Network
+            else -> CategoriesError.Unexpected
         }
     }
 }

@@ -1,6 +1,7 @@
 package com.sample.domain.use_case
 
 import com.sample.common.CategoriesError
+import com.sample.common.Constants.ERROR_MESSAGE
 import com.sample.common.Resource
 import com.sample.domain.model.Category
 import com.sample.domain.repository.CategoryRepository
@@ -27,7 +28,7 @@ internal class GetCategoriesUseCaseImpl @Inject constructor(private val reposito
     private fun handleException(exception: Exception): CategoriesError {
         return when (exception) {
             is HttpException -> CategoriesError.Http(
-                exception.localizedMessage ?: "An unexpected error occurred"
+                exception.localizedMessage ?: ERROR_MESSAGE
             )
             is IOException -> CategoriesError.Network
             else -> CategoriesError.Unexpected
